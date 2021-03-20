@@ -1,0 +1,12 @@
+{
+    "name": "VeniSiteAPI",
+    "description": "API проекта VeniBot",
+    "autoload": {
+        "psr-4": {
+            "api\\": "vendor/veniapi"
+        }
+    },
+    "require": {
+
+    }
+}
