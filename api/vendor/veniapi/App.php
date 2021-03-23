@@ -15,6 +15,7 @@ class App {
     public function __construct($query, $apiKey) {
         self::$query = $query;
         self::$apiKey = $apiKey;
+        new ErrorHandler();
         self::openMongoConnection();
         base\Validator::validateApiKey(self::$apiKey);
     }

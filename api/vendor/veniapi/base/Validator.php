@@ -7,13 +7,15 @@ use api\App;
 class Validator {
 
     public static function validateApiKey($apiKey) {
-        $key = App::getMongoConnection()->venisite->tokens->findOne(['key' => $apiKey]);
-        if ($key != null) {
-            echo "Ладно, проходи";
-            return true;
+        if ($apiKey == null) {
+            throw new \Exception("Unauthorized", 401);
         } else {
-            echo "Неправильный токен";
-            throw new \Exception("Unauthorized", 403);
+            $key = App::getMongoConnection()->venisite->tokens->findOne(['key' => $apiKey]);
+            if ($key != null) {
+                return true;
+            } else {
+                throw new \Exception("Invalid API key", 401);
+            }
         }
     }
 
