@@ -18,6 +18,7 @@ class App {
         new ErrorHandler();
         self::openMongoConnection();
         base\Validator::validateApiKey(self::$apiKey);
+        Router::processRoute($query);
     }
 
     private function openMongoConnection() {
