@@ -22,7 +22,7 @@ class Router {
 
     public static function processRoute($query) {
         if (self::matchRoute($query)) {
-            $controller = "app\controllers\\" . self::$route['controller'] . "Controller";
+            $controller = "app\controllers\\" . self::$route['service'] . "\\" . self::$route['controller'] . "Controller";
             if (!class_exists($controller)) {
                 throw new \Exception("Not found", 404);
             } else {
