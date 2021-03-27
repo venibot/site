@@ -22,12 +22,13 @@ class Router {
 
     public static function processRoute($query) {
         if (self::matchRoute($query)) {
-            $controller = "app\controllers\\" . self::$route['service'] . "\\" . self::$route['controller'] . "Controller";
+            $controller = "app\controllers\\" . self::$route['service'] . "\\" . self::camelCase(self::$route['controller'], truw) . "Controller";
             if (!class_exists($controller)) {
                 throw new \Exception("Not found", 404);
             } else {
-                $controllerObject = $controller(self::$route);
-                $action = self::$route['action'];
+                $controllerObject = new $controller(self::$route);
+                $action = self::camelCase(self::$route['action']) . "Action";
+                debug($action);
                 if (!method_exists($controllerObject, $action)) {
                     throw new \Exception("Not found", 404);
                 } else {
@@ -45,7 +46,6 @@ class Router {
                         $route[$k] = $v;
                     }
                 }
-                $route['controller'] = self::camelCase($route['controller'], true);
                 if (empty($route['action'])) {
                     $route['action'] = "index";
                 }

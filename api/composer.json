@@ -3,7 +3,8 @@
     "description": "API проекта VeniBot",
     "autoload": {
         "psr-4": {
-            "api\\": "vendor/veniapi"
+            "api\\": "vendor/veniapi",
+            "app\\": "app"
         }
     },
     "require": {
